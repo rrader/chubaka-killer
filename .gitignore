@@ -1,3 +1,9 @@
 venv
+*.png
+*.dat
+*.odt
+*.ods
 *.pyc
 .idea
+*.gpl
+Gantt

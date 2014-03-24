@@ -83,7 +83,6 @@ class App(object):
         self.countdown_value = 3
 
     def countdown(self):
-        print("ONCE SCHEDULED")
         self.countdown_value -= 1
         if self.countdown_value <= 0:
             self._ready = True
