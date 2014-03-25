@@ -116,7 +116,7 @@ class Detector(object):
             rts.schedule(retrieve, (state,), retrieve_done)
         def retrieve_done(result):
             # print("retrieve done")
-            rts.schedule(calculate_stage, (state, queue), None, 0.04, on_fail)
+            rts.schedule(calculate_stage, (state, queue), None, 0.08, on_fail)
             rts.schedule(retrieve, (state,), retrieve_done, 0.15, None,
                          fail_policy="reschedule") # time_policy="constant")
         def on_fail(result):

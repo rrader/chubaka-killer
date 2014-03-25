@@ -1,4 +1,4 @@
-from Queue import Queue
+from Queue import PriorityQueue
 from threading import Thread
 import time
 
@@ -8,7 +8,7 @@ import time
 
 class RTS(object):
     def __init__(self):
-        self.queue = Queue()
+        self.queue = PriorityQueue()
         self.threads = []
         for i in range(1):
             t = Thread(target=self.worker)
@@ -26,7 +26,7 @@ class RTS(object):
     def worker(self):
         while True:
             item = self.queue.get()
-            time_sch, function, args, callback, deadline, fail_callback, fail_policy, time_policy = item
+            priority, time_sch, function, args, callback, deadline, fail_callback, fail_policy, time_policy = item
             time_q = time.time()
             thread = Thread(target=function, args=(time_q, ) + args)
             thread.start()
@@ -76,6 +76,9 @@ class RTS(object):
             self.processed_events += 1
             self.queue.task_done()
 
+            print("processed, dropped: ", self.processed_events, self.dropped_events)
+
     def schedule(self, function, args, callback=None, deadline=None,
                  fail_callback=None, fail_policy="callback", time_policy="free"):
-        self.queue.put((time.time(), function, args, callback, deadline, fail_callback, fail_policy, time_policy))
+        priority = time.time() + deadline if deadline else time.time() + 1000
+        self.queue.put((priority, time.time(), function, args, callback, deadline, fail_callback, fail_policy, time_policy))
