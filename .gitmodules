@@ -1,0 +1,3 @@
+[submodule "area51"]
+	path = area51
+	url = git@github.com:toopay/area51.git
