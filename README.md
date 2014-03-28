@@ -1,6 +1,10 @@
 chubaka-killer
 ==============
 
+![Chubaka](https://raw.githubusercontent.com/rrader/chubaka-killer/master/1Chubaka.png)
+
+NOTICE: Sorry, I don't remember where did I googled these beautiful pixel-art images from SW
+
 Requirements
 
   - opencv
